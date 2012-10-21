@@ -7,13 +7,16 @@ A gem play with cube rendered by ruby-opengl
 Usage
 ===========
 
+<pre>
 gem install opengl
 gem install opengl-cube
-
-then create a ruby file includes
-
+</pre>
+<br />
+then create a ruby file includes the following
+<pre>
 require 'opengl-cube'
 OpenGLCube.new
+</pre>
 
 You will see what's inside.
 
