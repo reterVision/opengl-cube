@@ -1,7 +1,7 @@
 require 'rake/testtask'
 require 'rake/clean'
 
-NAME = 'hola'
+NAME = 'opengl-cube'
 
 # rule to build the extension: this says
 # that the extension should be rebuilt

@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.files = Dir.glob('lib/**/*.rb') +
             Dir.glob('ext/**/*.{c,h,rb}')
   s.executables = ['opengl-cube']
+  s.requirements << "opengl, v0.8.0.pre1"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

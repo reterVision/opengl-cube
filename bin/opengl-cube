@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'opengl-cube'
+
+OpenGLCube.new if $0 == __FILE__

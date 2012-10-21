@@ -6,6 +6,8 @@ class OpenGLCube
   include Glut
 
   def initialize
+  	@mouse_left_button_down = false
+
   	@mouse_pos_x = 0
   	@mouse_pos_y = 0
 
@@ -24,6 +26,8 @@ class OpenGLCube
     glutIdleFunc :idle
     glutKeyboardFunc :keyboard
     glutMouseFunc :mouse
+    glutMotionFunc :motion
+    glutPassiveMotionFunc :passive_motion
     init_gl_window 640, 480
     glutMainLoop
   end
@@ -149,11 +153,14 @@ class OpenGLCube
     when GLUT_LEFT_BUTTON
       case state
       when GLUT_DOWN
+      	@mouse_pos_x = x
+      	@mouse_pos_y = y
+      	@mouse_left_button_down = true
+      when GLUT_UP 
       	@cube_angle_x = @mouse_pos_x - x
       	@cube_angle_y = @mouse_pos_y - y
       	@mouse_pos_x = x
       	@mouse_pos_y = y
-      when GLUT_UP then puts "Left up"
       end
     when GLUT_RIGHT_BUTTON
       case state
@@ -164,6 +171,15 @@ class OpenGLCube
     glutPostRedisplay
   end 
 
+  def motion x, y
+  	if @mouse_left_button_down
+  		@cube_angle_y = @mouse_pos_x - x
+      	@cube_angle_x = @mouse_pos_y - y
+  	end
+  end
+
+  def passive_motion x, y
+  end
 end
 
 OpenGLCube.new if $0 == __FILE__
