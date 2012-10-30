@@ -7,12 +7,14 @@ class OpenGLCube
 
   def initialize
     @mouse_left_button_down = false
+    @mouse_right_button_down = false
 
     @mouse_pos_x = 0
     @mouse_pos_y = 0
 
     @cube_angle_x = 0
     @cube_angle_y = 0
+    @cube_angle_z = 0
 
     # Initliaze our GLUT code
     glutInit
@@ -80,6 +82,7 @@ class OpenGLCube
     # Rotate the cube on the X, Y and Z axis
     glRotatef @cube_angle_y, 0.0, 1.0, 0.0
     glRotatef @cube_angle_x, 1.0, 0.0, 0.0
+    glRotatef @cube_angle_z, 0.0, 0.0, 1.0
 
     # Set it to a blue color one time only
     glBegin GL_QUADS do
@@ -161,21 +164,29 @@ class OpenGLCube
       	@cube_angle_y = @mouse_pos_y - y
       	@mouse_pos_x = x
       	@mouse_pos_y = y
+        @mouse_left_button_down = false
       end
     when GLUT_RIGHT_BUTTON
       case state
-      when GLUT_DOWN then puts "Right down"
-      when GLUT_UP then puts "Right up"
+      when GLUT_DOWN
+        @mouse_pos_x = x
+        @mouse_pos_y = y
+        @mouse_right_button_down = true
+      when GLUT_UP 
+        @cube_angle_z = @mouse_pos_x - x
+        @mouse_right_button_down = false
       end
     end
     glutPostRedisplay
   end 
 
   def motion x, y
-  	if @mouse_left_button_down
-  		@cube_angle_y = @mouse_pos_x - x
-      	@cube_angle_x = @mouse_pos_y - y
-  	end
+    if @mouse_left_button_down
+      @cube_angle_y = @mouse_pos_x - x
+      @cube_angle_x = @mouse_pos_y - y
+    elsif @mouse_right_button_down
+      @cube_angle_z = @mouse_pos_x - x
+    end
   end
 
   def passive_motion x, y
