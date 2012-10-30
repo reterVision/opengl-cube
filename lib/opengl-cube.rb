@@ -6,10 +6,10 @@ class OpenGLCube
   include Glut
 
   def initialize
-  	@mouse_left_button_down = false
+    @mouse_left_button_down = false
 
-  	@mouse_pos_x = 0
-  	@mouse_pos_y = 0
+    @mouse_pos_x = 0
+    @mouse_pos_y = 0
 
     @cube_angle_x = 0
     @cube_angle_y = 0
@@ -183,3 +183,4 @@ class OpenGLCube
 end
 
 OpenGLCube.new if $0 == __FILE__
+

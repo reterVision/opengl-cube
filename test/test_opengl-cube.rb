@@ -1,7 +1,11 @@
-require 'test/unit'
-require 'hola'
+require 'rubygems'
+require 'opengl/test_case'
+require 'gl'
+require 'glut'
+include Gl
+include Glut
 
-class OpenGLCubeTest < Test::Unit::TestCase
+class OpenGLCubeTest < OpenGL::TestCase
   def setup
   end 
 
